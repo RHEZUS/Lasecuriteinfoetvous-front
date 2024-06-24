@@ -17,7 +17,7 @@ import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import ThumbSlider from "@/components/Ecommerce/thumb-slider.vue";
 import { cartStore } from "@/store/cart";
 import { useQuery } from "@tanstack/vue-query";
-import { getProductById } from "@/plugins/axios";
+//import { getProductById } from "@/plugins/axios";
 import { useRoute } from "vue-router";
 import { ref } from "vue";
 const props = defineProps({

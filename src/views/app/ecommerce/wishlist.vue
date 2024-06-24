@@ -10,7 +10,7 @@
 <script setup>
 import ProductWish from "@/components/Ecommerce/product-wish.vue";
 import { useQuery } from "@tanstack/vue-query";
-import { getProducts } from "@/plugins/axios";
+//import { getProducts } from "@/plugins/axios";
 
 
 
