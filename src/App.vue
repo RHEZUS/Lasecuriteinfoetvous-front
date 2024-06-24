@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import "animate.css";
 import { useThemeSettingsStore } from "@/store/themeSettings";
 
 export default {
