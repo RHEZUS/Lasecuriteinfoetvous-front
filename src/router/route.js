@@ -107,9 +107,9 @@ const routes = [
     name: "Layout",
     redirect: "/dashboard/home",
     component: () => import("@/Layout/index.vue"),
-    //meta: {
-    //  middleware: [auth],
-    //},
+    meta: {
+      middleware: [auth],
+    },
     children: [
       {
         path: "home",
