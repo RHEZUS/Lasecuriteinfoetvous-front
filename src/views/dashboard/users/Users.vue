@@ -37,11 +37,11 @@
               {{ "#" + props.row.order }}
             </span>
             <span
-              v-if="props.column.field == 'date'"
+              v-if="props.column.field == 'created_at'"
               class="text-slate-500 dark:text-slate-300"
             >
-              {{ props.row.date }}
-            </span>
+            {{ formatDate(props.row.created_at) }}
+          </span>
             <span v-if="props.column.field == 'is_active'" class="block w-full">
               <span
                 class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25"
@@ -259,7 +259,12 @@
           this.$refs.formModal1.$refs.modal1.openModal();
         },
 
-        
+        formatDate(dateString) {
+          const date = new Date(dateString);
+          const options = { day: '2-digit', month: 'short', year: 'numeric' };
+          //console.log(date.toLocaleDateString('en-US', options));
+          return date.toLocaleDateString('en-US', options);
+        },
 
         confirmDelete(itemId) {
           if (confirm('Are you sure you want to delete this item?')) {
