@@ -12,7 +12,7 @@
                 <a :href="authorLink" class="flex items-center gap-2 text-black-500 hover:text-blue-800"><Icon class="text-blue-800" icon="heroicons:user" /> <span>{{ author }}</span></a>
                 <a :href="link" class="flex items-center gap-2 text-black-500 hover:text-blue-800"><Icon class="text-blue-800" icon="heroicons:chat-bubble-left-right" /> <span>{{ commentCount }}</span></a>
             </div>
-            <a :href="link"class="titles text-black-500 hover:text-blue-800 font-bold text-xl">{{ title }}</a>
+            <a :href="link" class="titles text-black-500 hover:text-blue-800 font-bold text-xl">{{ title }}</a>
             <p class="text-slate-700 pt-3 pb-16 mb-auto">
                 Easy mind life fact with see has bore ten. Parish any chatty can elinor direct for former. Up as meant widow...
             </p>
