@@ -80,7 +80,7 @@
             <!-- Useful links section -->
         <div>
             <h6 class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-                Useful links
+                Top Categories
             </h6>
             <p v-for="item in ArticleCategories" class="mb-4"> <a :href="item.slug">{{item.name}}</a> </p>
 
