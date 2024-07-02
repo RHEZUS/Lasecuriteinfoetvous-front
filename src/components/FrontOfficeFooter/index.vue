@@ -74,8 +74,8 @@
                 <p class="mb-4"> <a href="/">Home</a></p>
                 <p class="mb-4"> <a href="/blog">Blog</a> </p>
                 <p class="mb-4"> <a href="/stories">Stories</a> </p>
-                <p class="mb-4"> <a href="/about-us">About Us</a> </p>
-                <p class="mb-4"> <a href="/contact-us">Contact us</a> </p>
+                <p class="mb-4"> <a href="/under-construction">About Us</a> </p>
+                <p class="mb-4"> <a href="/under-construction">Contact us</a> </p>
             </div>
             <!-- Useful links section -->
         <div>
