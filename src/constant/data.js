@@ -1,4 +1,4 @@
-export const API_URL = 'http://127.0.0.1:8000/'
+export const API_URL = 'https://api.lasecuriteinfoetvous.com';
 import userImg from "@/assets/images/all-img/user.png";
 import user2Img from "@/assets/images/all-img/user2.png";
 import user3Img from "@/assets/images/all-img/user3.png";
