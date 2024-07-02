@@ -20,11 +20,11 @@
         }"
       >
         <template v-slot:table-row="props">
-          <span v-if="props.column.field == 'image'" class="flex">
+          <span v-if="props.column.field == 'image_url'" class="flex">
             <span class="w-16 h-16 ltr:mr-3 rtl:ml-3 flex-none">
               <img
                 :src="API_URL + 'storage/' + props.row.image_url"
-                :alt="props.row.title + 'image'"
+                :alt="props.row.title + 'image_url'"
                 class="object-cover w-full h-full "
               />
             </span>
