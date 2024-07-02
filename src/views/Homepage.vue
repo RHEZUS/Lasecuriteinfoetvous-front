@@ -10,7 +10,7 @@
                 </p>
            </div> 
            <div class="w-1/2 flex justify-center items-center">
-                <img src="../assets/images/all-img/banner-img.png" alt="hero" class="w-[65%]"/>
+                <img src="../assets/images/all-img/banner-img.png" alt="hero" class="w-full md:w-[65%]"/>
            </div>
         </section>
         <section class="blog px-4 md:px-12 pt-16 pb-8">
@@ -28,7 +28,7 @@
                     :author="article.user.name"
                     :date="article.created_at"
                     :authorLink="'/author/' + article.user.id"
-                    :link="'/blog/' + article.slug"
+                    :link="'//blog/article/' + article.slug"
                     />
                 </div>
             </div>
@@ -79,20 +79,8 @@
             }
         },
         methods:{
-            async fetch_user(){
-                fetch('http://127.0.0.1:8000/api/user', {
-                    //method: 'GET',
-                    headers: { 'Content-Type': 'application/json'},
-                    Credential: 'include'
-                })
-                await apiClient.get('http://127.0.0.1:8000/api/user/').then(response => {
-                    this.user = response.user;
-                }).catch(error => {
-                    console.log(error);
-                });
-            },
             async getRecentPosts(){
-                await apiClient.get(`/api/admin/articles`)
+                await apiClient.get(`/api/articles/recent`)
                 .then(response => {
                     this.recentPosts = response.data.articles.slice(0, 3);
                     console.log(this.recentPosts);

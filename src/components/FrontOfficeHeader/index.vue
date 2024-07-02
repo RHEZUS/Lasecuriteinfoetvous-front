@@ -8,16 +8,16 @@
           <span class="text-xl">DashCode</span>
       </a>
     </div>
-    <div class="hidden md:flex">
+    <div class="hidden lg:flex">
       <ul class="flex gap-8 font-semibold text-lg w-full">
         <a href="/" class="text-black-500 hover:text-blue-800"> <li>Home</li> </a>
         <a href="/blog" class="text-black-500 hover:text-blue-800"> <li>Blog</li> </a>
         <a href="/stories" class="text-black-500 hover:text-blue-800"> <li>Stories</li> </a>
-        <a href="" class="text-black-500 hover:text-blue-800"> <li>About Us</li> </a>
-        <a href="" class="text-black-500 hover:text-blue-800"> <li>Contact Us</li> </a>
+        <a href="/under-construction" class="text-black-500 hover:text-blue-800"> <li>About Us</li> </a>
+        <a href="/under-construction" class="text-black-500 hover:text-blue-800"> <li>Contact Us</li> </a>
       </ul>
     </div>
-    <div class="">
+    <div class="hidden lg:flex">
       <a href="#" class="bg-blue-800 text-white hover:text-blue-800 hover:bg-white px-3 py-3 rounded-md ring-blue-800 hover:ring-2 text-lg font-semibold">Contact Us</a>
     </div>
     

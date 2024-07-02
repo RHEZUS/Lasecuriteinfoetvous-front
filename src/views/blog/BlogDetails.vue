@@ -76,7 +76,7 @@
         methods:{
             async getArticle(){
                 try {
-                    const response = await apiClient.get(`/api/articles/${this.$route.params.slug}`);
+                    const response = await apiClient.get(`/api/article/${this.$route.params.slug}`);
                     this.article = response.data.article;
                     console.log(this.article);
                 } catch (error) {

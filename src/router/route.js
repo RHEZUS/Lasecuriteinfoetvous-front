@@ -78,7 +78,7 @@ const routes = [
     component: () => import("@/views/blog/Blog.vue"),
   },
   {
-    path: '/blog/:slug',
+    path: '/blog/article/:slug',
     name: 'BlogDetails',
     component: () => import("@/views/blog/BlogDetails.vue"),
   },
@@ -86,11 +86,6 @@ const routes = [
     path: '/blog/category/:slug',
     name: 'Blog Category',
     component: () => import("@/views/blog/Category.vue"),
-  },
-  {
-    path: '/blog/category/:slug',
-    name: 'BlogDetails',
-    component: () => import("@/views/blog/BlogDetails.vue"),
   },
   {
     path: '/stories',
@@ -107,9 +102,9 @@ const routes = [
     name: "Layout",
     redirect: "/dashboard/home",
     component: () => import("@/Layout/index.vue"),
-    meta: {
-      middleware: [auth],
-    },
+    //meta: {
+    //  middleware: [auth],
+    //},
     children: [
       {
         path: "home",

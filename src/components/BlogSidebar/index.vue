@@ -24,13 +24,13 @@
 
             <div v-if="recentPosts" v-for="article in recentPosts" class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
-                    <a href="#" class="w-20">
+                    <a :href="'/blog/article/' + article.slug" class="w-20">
                         <div class="w-20">
                             <img :src="API_URL + 'storage/' + article.image_url" alt="blog" class="w-full h-20 object-cover rounded-lg">
                         </div>
                     </a>
                     <div>
-                        <a href="#"class="text-lg font-semibold text-black-500 hover:text-blue-800">{{article.title}}</a>
+                        <a :href="'/blog/article/' + article.slug" class="text-lg font-semibold text-black-500 hover:text-blue-800 hover:cursor-pointer">{{article.title}}</a>
                         <p class="text-base text-gray-500">{{formatDate(article.created_at)}}</p>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                     :author="article.user.name"
                     :date="article.created_at"
                     :authorLink="'#'"
-                    :link="'/blog/' + article.slug"
+                    :link="'/blog/article/' + article.slug"
                     />
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="hero min-h-60  px-4 md:px-12 flex flex-col items-center justify-center overflow-hidden mt-20 after:contents[''] after:absolute after:bg-black-500" :style="{ backgroundImage: `url(${image})` }">
+    <div class="hero min-h-72  px-4 md:px-12 flex flex-col items-center justify-center overflow-hidden mt-14 after:contents[''] after:absolute after:bg-black-500" :style="{ backgroundImage: `url(${image})` }">
         <div class="text-white text-6xl font-medium uppercase">{{title}}</div>
         <slot></slot>
     </div>
