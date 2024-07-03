@@ -9,7 +9,7 @@
       </a>
     </div>
     <div class="hidden lg:flex">
-      <ul class="flex gap-8 font-semibold text-lg w-full">
+      <ul class="flex gap-8 font-medium text-lg w-full">
         <a href="/" class="text-black-500 hover:text-blue-800"> <li>Home</li> </a>
         <a href="/blog" class="text-black-500 hover:text-blue-800"> <li>Blog</li> </a>
         <a href="/stories" class="text-black-500 hover:text-blue-800"> <li>Stories</li> </a>
