@@ -17,9 +17,6 @@
         <a href="/under-construction" class="text-black-500 hover:text-blue-800"> <li>Contact Us</li> </a>
       </ul>
     </div>
-    <div class="hidden lg:flex">
-      <a href="#" class="bg-blue-800 text-white hover:text-blue-800 hover:bg-white px-3 py-3 rounded-md ring-blue-800 hover:ring-2 text-lg font-semibold">Contact Us</a>
-    </div>
     
     <ResponsiveNavbar></ResponsiveNavbar>
   </div>

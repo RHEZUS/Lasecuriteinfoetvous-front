@@ -78,6 +78,16 @@ const routes = [
     component: () => import("@/views/blog/Blog.vue"),
   },
   {
+    path: '/blog/search/:keyword',
+    name: 'BlogSearch',
+    component: () => import("@/views/blog/Search.vue"),
+  },
+  {
+    path: '/blog/search/:keyword',
+    name:'StorySearch',
+    component: () => import("@/views/story/Search.vue"),
+  },
+  {
     path: '/blog/article/:slug',
     name: 'BlogDetails',
     component: () => import("@/views/blog/BlogDetails.vue"),
