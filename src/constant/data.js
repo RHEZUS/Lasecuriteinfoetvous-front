@@ -16,6 +16,11 @@ export const menuItems = [
     link: "home",
   },
   {
+    title: 'Go To Website',
+    icon: 'bi:box-arrow-up-right',
+    link: '/',
+  },
+  {
     title: "Users",
     icon: "heroicons-outline:users",
     link: "users",
