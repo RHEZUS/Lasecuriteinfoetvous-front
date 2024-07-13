@@ -108,7 +108,7 @@ export default {
         apiClient(`/api/register/`, {'name': this.name ,'email': this.email, 'password': this.password})
        .then((response) => {
           this.toast.success("Registered successfully", { timeout: 2000 });
-          this.router.push("/");
+          this.router.push("/login");
         }).catch((error) => {
           console.log('Error message: ', error.response.data.errors);
           const errors = error.response.data.errors;

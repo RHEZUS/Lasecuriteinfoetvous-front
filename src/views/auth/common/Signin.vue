@@ -103,6 +103,8 @@ export default {
         apiClient.post(`/api/login/`, {'email': this.email, 'password': this.password})
        .then((response) => {
           this.toast.success("Login successfully", { timeout: 2000 });
+          localStorage.setItem('token', response.data.token);
+          console.log('Token: ', response.data);
           this.router.push("/dashboard/home");
         }).catch((error) => {
           console.log('Error message: ', error.message);

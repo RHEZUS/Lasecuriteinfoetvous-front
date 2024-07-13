@@ -1,133 +1,136 @@
 <template>
-    <div>
-      <Card noborder>
-        <div class="md:flex justify-between pb-6 md:space-y-0 space-y-3 items-center">
-          <h5>Articles</h5>
-          <InputGroup v-model="searchTerm" placeholder="Search" type="text" prependIcon="heroicons-outline:search" merged/>
-        </div>
-  
-        <vue-good-table
-          :columns="columns"
-          styleClass="vgt-table bordered centered"
-          :rows="users"
-          :pagination-options="{
-            enabled: true,
-            perPage: perpage,
-          }"
-          :search-options="{
-            enabled: true,
-            externalQuery: searchTerm,
-          }"
-        >
-          <template v-slot:table-row="props">
-            <span v-if="props.column.field == 'customer'" class="flex">
-              <span class="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none">
-                <img
-                  :src="props.row.customer.image"
-                  :alt="props.row.customer.name"
-                  class="object-cover w-full h-full rounded-full"
-                />
-              </span>
-              <span
-                class="text-sm text-slate-600 dark:text-slate-300 capitalize"
-                >{{ props.row.customer.name }}</span
-              >
-            </span>
-            <span v-if="props.column.field == 'order'">
-              {{ "#" + props.row.order }}
+  <div class="flex h-fit justify-between flex-wrap items-center py-2">
+    <Breadcrumb/>
+    <div class="modal-groups">
+      <UserModal :load-data="FetchData" :formMode="formMode" :user="user" ref="formModal1"></UserModal>
+      <Button @click="showCreateModal()" type="submit" text="Create User"  btnClass="btn-primary h-10 flex items-center"/>
+    </div>
+  </div>
+  <div>
+    <Card noborder>
+      <div class="md:flex justify-between pb-6 md:space-y-0 space-y-3 items-center">
+        <h5>Articles</h5>
+        <InputGroup v-model="searchTerm" placeholder="Search" type="text" prependIcon="heroicons-outline:search" merged/>
+      </div>
+
+      <vue-good-table
+        :columns="columns"
+        styleClass="vgt-table bordered centered"
+        :rows="users"
+        :pagination-options="{
+          enabled: true,
+          perPage: perpage,
+        }"
+        :search-options="{
+          enabled: true,
+          externalQuery: searchTerm,
+        }"
+      >
+        <template v-slot:table-row="props">
+          <span v-if="props.column.field == 'customer'" class="flex">
+            <span class="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none">
+              <img
+                :src="props.row.customer.image"
+                :alt="props.row.customer.name"
+                class="object-cover w-full h-full rounded-full"
+              />
             </span>
             <span
-              v-if="props.column.field == 'created_at'"
-              class="text-slate-500 dark:text-slate-300"
+              class="text-sm text-slate-600 dark:text-slate-300 capitalize"
+              >{{ props.row.customer.name }}</span
             >
-            {{ formatDate(props.row.created_at) }}
           </span>
-            <span v-if="props.column.field == 'is_active'" class="block w-full">
-              <span
-                class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25"
-                :class="`${
-                  props.row.is_active === 1
-                    ? 'text-success-500 bg-success-500'
-                    : ''
-                } 
-              ${
-                props.row.is_active === 'due'
-                  ? 'text-warning-500 bg-warning-500'
+          <span v-if="props.column.field == 'order'">
+            {{ "#" + props.row.order }}
+          </span>
+          <span
+            v-if="props.column.field == 'created_at'"
+            class="text-slate-500 dark:text-slate-300"
+          >
+          {{ formatDate(props.row.created_at) }}
+        </span>
+          <span v-if="props.column.field == 'is_active'" class="block w-full">
+            <span
+              class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25"
+              :class="`${
+                props.row.is_active === 1
+                  ? 'text-success-500 bg-success-500'
                   : ''
-              }
-              ${
-                props.row.is_active === 0
-                  ? 'text-danger-500 bg-danger-500'
-                  : ''
-              }
-              
-               `"
-              >
-                {{ props.row.is_active == 1 ? 'Activated' : 'Deactivated'}}
-              </span>
+              } 
+            ${
+              props.row.is_active === 'due'
+                ? 'text-warning-500 bg-warning-500'
+                : ''
+            }
+            ${
+              props.row.is_active === 0
+                ? 'text-danger-500 bg-danger-500'
+                : ''
+            }
+            
+              `"
+            >
+              {{ props.row.is_active == 1 ? 'Activated' : 'Deactivated'}}
             </span>
-            <span v-if="props.column.field == 'action'">
-              <Dropdown classMenuItems="w-[140px] z-50">
-                <span class="text-xl"
-                  ><Icon icon="heroicons-outline:dots-vertical"
-                /></span>
-                <template v-slot:menus class="z-50">
-                  <MenuItem>
-                    <div class="hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50 w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
-                      <span class="text-base"><Icon :icon="'heroicons-outline:eye'" /></span>
-                      <span>View</span>
-                    </div>
-                  </MenuItem>
-                  <MenuItem>
-                    <div @click="showEditModal(props.row)" class="hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50 w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
-                      <span class="text-base"><Icon :icon="'heroicons:pencil-square'" /></span>
-                      <span>Update</span>
-                    </div>
-                  </MenuItem>
-                  <MenuItem>
-                    <div @click="deactivateItem(props.row.id)" v-if="props.row.is_active == 1" class="hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50 w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
-                      <span class="text-base"><Icon :icon="'heroicons-outline:no-symbol'" /></span>
-                      <span>Deactivate</span>
-                    </div>
-                    <div @click="activateItem(props.row.id)" v-else class="bg-green-500 text-green-500 bg-opacity-30   hover:bg-opacity-100 hover:text-white w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
-                      <span class="text-base"><Icon :icon="'heroicons-outline:check-badge'" /></span>
-                      <span>activate</span>
-                    </div>
-                  </MenuItem>
-                  <MenuItem>
-                    <div @click="confirmDelete(props.row.id)" class="bg-danger-500 text-danger-500 bg-opacity-30   hover:bg-opacity-100 hover:text-white w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
-                      <span class="text-base"><Icon :icon="'heroicons-outline:trash'" /></span>
-                      <span>Delete</span>
-                    </div>
-                  </MenuItem>
-                </template>
-              </Dropdown>
-            </span>
-          </template>
-          <template #pagination-bottom="props">
-            <div class="py-4 px-3">
-              <Pagination
-                :total="50"
-                :current="current"
-                :per-page="perpage"
-                :pageRange="pageRange"
-                @page-changed="current = $event"
-                :pageChanged="props.pageChanged"
-                :perPageChanged="props.perPageChanged"
-                enableSearch
-                :options="options"
+          </span>
+          <span v-if="props.column.field == 'action'">
+            <Dropdown classMenuItems="w-[140px] z-50">
+              <span class="text-xl"
+                ><Icon icon="heroicons-outline:dots-vertical"
+              /></span>
+              <template v-slot:menus class="z-50">
+                <MenuItem>
+                  <div class="hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50 w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
+                    <span class="text-base"><Icon :icon="'heroicons-outline:eye'" /></span>
+                    <span>View</span>
+                  </div>
+                </MenuItem>
+                <MenuItem>
+                  <div @click="showEditModal(props.row)" class="hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50 w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
+                    <span class="text-base"><Icon :icon="'heroicons:pencil-square'" /></span>
+                    <span>Update</span>
+                  </div>
+                </MenuItem>
+                <MenuItem>
+                  <div @click="deactivateItem(props.row.id)" v-if="props.row.is_active == 1" class="hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50 w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
+                    <span class="text-base"><Icon :icon="'heroicons-outline:no-symbol'" /></span>
+                    <span>Deactivate</span>
+                  </div>
+                  <div @click="activateItem(props.row.id)" v-else class="bg-green-500 text-green-500 bg-opacity-30   hover:bg-opacity-100 hover:text-white w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
+                    <span class="text-base"><Icon :icon="'heroicons-outline:check-badge'" /></span>
+                    <span>activate</span>
+                  </div>
+                </MenuItem>
+                <MenuItem>
+                  <div @click="confirmDelete(props.row.id)" class="bg-danger-500 text-danger-500 bg-opacity-30   hover:bg-opacity-100 hover:text-white w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse">
+                    <span class="text-base"><Icon :icon="'heroicons-outline:trash'" /></span>
+                    <span>Delete</span>
+                  </div>
+                </MenuItem>
+              </template>
+            </Dropdown>
+          </span>
+        </template>
+        <template #pagination-bottom="props">
+          <div class="py-4 px-3">
+            <Pagination
+              :total="50"
+              :current="current"
+              :per-page="perpage"
+              :pageRange="pageRange"
+              @page-changed="current = $event"
+              :pageChanged="props.pageChanged"
+              :perPageChanged="props.perPageChanged"
+              enableSearch
+              :options="options"
+            >
               >
-                >
-              </Pagination>
-            </div>
-          </template>
-        </vue-good-table>
-      </Card>
-      <div class="modal-groups absolute top-[100px]  right-6">
-        <UserModal :load-data="FetchData" :formMode="formMode" :user="user" ref="formModal1"></UserModal>
-        <Button @click="showCreateModal()" type="submit" text="Create User"  btnClass="btn-primary h-10 flex items-center"/>
-      </div>
-    </div>
+            </Pagination>
+          </div>
+        </template>
+      </vue-good-table>
+    </Card>
+  </div>
   </template>
   <script>
   import Dropdown from "@/components/Dropdown";
@@ -142,6 +145,7 @@
   import UserModal from "./UserFormModal.vue";
   import { useToast } from "vue-toastification";
   import apiClient from "@/plugins/axios";
+  import Breadcrumb from "@/components/Breadcrumbs";
   export default {
     components: {
       Pagination,
@@ -154,6 +158,7 @@
       Button,
       Textinput,
       UserModal,
+      Breadcrumb,
     },
   
     data() {

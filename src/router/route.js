@@ -1,5 +1,6 @@
 import auth from "@/middleware/auth";
 import guest from "@/middleware/guest";
+import role from "@/middleware/role";
 
 const routes = [
   {
@@ -8,29 +9,9 @@ const routes = [
     component: () => import("@/views/auth/login/index.vue"),
   },
   {
-    path: "/login2",
-    name: "login2",
-    component: () => import("@/views/auth/login/login2.vue"),
-  },
-  {
-    path: "/login3",
-    name: "login3",
-    component: () => import("@/views/auth/login/login3.vue"),
-  },
-  {
     path: "/register",
     name: "reg",
     component: () => import("@/views/auth/register"),
-  },
-  {
-    path: "/register2",
-    name: "reg2",
-    component: () => import("@/views/auth/register/register2"),
-  },
-  {
-    path: "/register3",
-    name: "reg3",
-    component: () => import("@/views/auth/register/register3"),
   },
   {
     path: "/forgot-password",
@@ -38,29 +19,9 @@ const routes = [
     component: () => import("@/views/auth/forgot-password.vue"),
   },
   {
-    path: "/forgot-password2",
-    name: "forgot-password2",
-    component: () => import("@/views/auth/forgot-password2.vue"),
-  },
-  {
-    path: "/forgot-password3",
-    name: "forgot-password3",
-    component: () => import("@/views/auth/forgot-password3.vue"),
-  },
-  {
     path: "/lock-screen",
     name: "lock-screen",
     component: () => import("@/views/auth/lock-screen.vue"),
-  },
-  {
-    path: "/lock-screen2",
-    name: "lock-screen2",
-    component: () => import("@/views/auth/lock-screen2.vue"),
-  },
-  {
-    path: "/lock-screen3",
-    name: "lock-screen3",
-    component: () => import("@/views/auth/lock-screen3.vue"),
   },
   {
     path: "/success-500",
@@ -107,9 +68,9 @@ const routes = [
     name: "Layout",
     redirect: "/dashboard/home",
     component: () => import("@/Layout/index.vue"),
-    //meta: {
-    //  middleware: [auth],
-    //},
+    meta: {
+      middleware: [auth(['admin'])] // Add middleware to check if user is logged in and has the role of admin,
+    },
     children: [
       {
         path: "home",
@@ -125,6 +86,9 @@ const routes = [
         path: "users",
         name: "users",
         component: () => import("@/views/dashboard/users/Users.vue"),
+        meta: {
+          hide: true,
+        },
       },
 
       // Stories
@@ -134,6 +98,7 @@ const routes = [
         component: () => import("@/views/dashboard/stories/StoryCategories.vue"),
         meta: {
           groupParent: "stories",
+          hide: true,
         },
       },
       {
@@ -142,6 +107,7 @@ const routes = [
         component: () => import("@/views/dashboard/stories/Stories.vue"),
         meta: {
           groupParent: "stories",
+          hide: true,
         },
       },
       
@@ -153,6 +119,7 @@ const routes = [
         component: () => import("@/views/dashboard/articles/ArticleCategories.vue"),
         meta: {
           groupParent: "articles",
+          hide: true,
         },
       },
       {
@@ -161,6 +128,7 @@ const routes = [
         component: () => import("@/views/dashboard/articles/Articles.vue"),
         meta: {
           groupParent: "articles",
+          hide: true,
         },
       },
 

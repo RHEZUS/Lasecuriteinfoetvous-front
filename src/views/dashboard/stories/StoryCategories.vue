@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="flex h-fit justify-between flex-wrap items-center py-2">
+      <Breadcrumb/>
+      <div class="modal-groups">
+        <CategoryModal :load-data="FetchData" :formMode="formMode" :user="item" ref="formModal1"></CategoryModal>
+        <Button @click="showCreateModal()" type="submit" text="Create Category"  btnClass="btn-primary h-10 flex items-center"/>
+      </div>
+    </div>
     <Card noborder>
       <div class="md:flex justify-between pb-6 md:space-y-0 space-y-3 items-center">
         <h5>Articles</h5>
@@ -115,10 +122,6 @@
         </template>
       </vue-good-table>
     </Card>
-    <div class="modal-groups absolute top-[100px]  right-6">
-      <CategoryModal :load-data="FetchData" :formMode="formMode" :user="item" ref="formModal1"></CategoryModal>
-      <Button @click="showCreateModal()" type="submit" text="Create Category"  btnClass="btn-primary h-10 flex items-center"/>
-    </div>
   </div>
 </template>
 <script>
@@ -135,6 +138,7 @@ import Textinput from "@/components/Textinput";
 import CategoryModal from "./CategoryFormModal.vue";
 import { useToast } from "vue-toastification";
 import apiClient from "@/plugins/axios";
+import Breadcrumb from "@/components/Breadcrumbs";
 export default {
   components: {
     Pagination,
@@ -148,6 +152,7 @@ export default {
     Textinput,
     CategoryModal,
     Tooltip,
+    Breadcrumb,
   },
 
   data() {
