@@ -72,6 +72,7 @@ export const menuItems = [
       },
     ],
   },
+  /*
   {
     isHeadr: true,
     title: "apps",
@@ -457,8 +458,9 @@ export const menuItems = [
     title: "Icons",
     icon: "heroicons-outline:emoji-happy",
     link: "icons",
-  },
+  },*/
 ];
+
 
 // menuseetins
 
