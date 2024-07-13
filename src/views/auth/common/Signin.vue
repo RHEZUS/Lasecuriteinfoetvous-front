@@ -105,7 +105,7 @@ export default {
           this.toast.success("Login successfully", { timeout: 2000 });
           localStorage.setItem('token', response.data.token);
           console.log('Token: ', response.data);
-          this.router.push("/dashboard/home");
+          this.router.push("/");
         }).catch((error) => {
           console.log('Error message: ', error.message);
           this.toast.error(error.message, { timeout: 2000 });
