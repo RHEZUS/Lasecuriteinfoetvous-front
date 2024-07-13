@@ -3,7 +3,7 @@ import axios from 'axios';
 //http://api.lasecuriteinfoetvous.com
 const token = localStorage.getItem('token');
 const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'http://api.lasecuriteinfoetvous.com',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
