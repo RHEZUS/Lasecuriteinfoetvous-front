@@ -132,6 +132,46 @@ const routes = [
         },
       },
 
+      // Discussion Forum
+      {
+        path: "forum-categories",
+        name: "forum-categories",
+        component: () => import("@/views/dashboard/forum/categories.vue"),
+        meta:{
+          groupParent: "forum",
+          hide: true,
+        }
+      },
+
+      {
+        path: "all-forums",
+        name: "all-forums",
+        component: () => import("@/views/dashboard/forum/threads.vue"),
+        meta:{
+          groupParent: "forum",
+          hide: true,
+        }
+      },
+      //{
+      //  path: "forum-thread/:slug",
+      //  name: "forum-thread",
+      //  component: () => import("@/views/dashboard/forum/thread.vue"),
+      //  meta:{
+      //    groupParent: "forum",
+      //    hide: true,
+      //  }
+      //},
+
+      {
+        path: "forum-tags",
+        name: "forum-tags",
+        component: () => import("@/views/dashboard/forum/tags.vue"),
+        meta:{
+          groupParent: "forum",
+          hide: true,
+        }
+      },
+
 
       // Others
       {

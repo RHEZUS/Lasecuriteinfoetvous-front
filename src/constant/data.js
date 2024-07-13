@@ -53,6 +53,26 @@ export const menuItems = [
     ],
   },
   {
+    title: "Forum",
+    icon: "heroicons:clock",
+    //link: "stories",
+    link: "#",
+    child: [
+      {
+        childtitle: "Categories",
+        childlink: "forum-categories",
+      },
+      {
+        childtitle: "Tags",
+        childlink: "forum-tags",
+      },
+      {
+        childtitle: "Threads",
+        childlink: "all-forums",
+      },
+    ],
+  },
+  {
     isHeadr: true,
     title: "apps",
   },
